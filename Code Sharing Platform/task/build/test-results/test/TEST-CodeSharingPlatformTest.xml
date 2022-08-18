@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="CodeSharingPlatformTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-08-18T06:26:11" hostname="DESKTOP-1NFTNE0" time="14.285">
+  <properties/>
+  <testcase name="start" classname="CodeSharingPlatformTest" time="14.285"/>
+  <system-out><![CDATA[?[1;31m
+Start test 1?[0m
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.5.6)
+
+2022-08-18 10:26:13.613  INFO 17432 --- [    Test worker] platform.CodeSharingPlatform             : Starting CodeSharingPlatform using Java 17.0.3 on DESKTOP-1NFTNE0 with PID 17432 (started by pc in C:\Users\pc\Documents\Java Programs\Code Sharing Platform\Code Sharing Platform\task)
+2022-08-18 10:26:13.620  INFO 17432 --- [    Test worker] platform.CodeSharingPlatform             : No active profile set, falling back to default profiles: default
+2022-08-18 10:26:16.081  INFO 17432 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-08-18 10:26:16.200  INFO 17432 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 88 ms. Found 1 JPA repository interfaces.
+2022-08-18 10:26:17.835  INFO 17432 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8889 (http)
+2022-08-18 10:26:17.858  INFO 17432 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-08-18 10:26:17.859  INFO 17432 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.54]
+2022-08-18 10:26:18.075  INFO 17432 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-08-18 10:26:18.075  INFO 17432 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4327 ms
+2022-08-18 10:26:18.359  INFO 17432 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-08-18 10:26:18.828  INFO 17432 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-08-18 10:26:18.862  INFO 17432 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2'. Database available at 'jdbc:h2:file:~/codeSharingDB'
+2022-08-18 10:26:19.342  INFO 17432 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-08-18 10:26:19.494  INFO 17432 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2022-08-18 10:26:19.914  INFO 17432 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-08-18 10:26:20.299  INFO 17432 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2022-08-18 10:26:21.698  INFO 17432 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-08-18 10:26:21.739  INFO 17432 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-08-18 10:26:21.846  WARN 17432 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-08-18 10:26:22.495  INFO 17432 --- [    Test worker] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: 3aedf66a-e79b-496c-b5ed-312313afc234
+
+2022-08-18 10:26:22.707  INFO 17432 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@10466c55, org.springframework.security.web.context.SecurityContextPersistenceFilter@5b3a8bea, org.springframework.security.web.header.HeaderWriterFilter@49654a35, org.springframework.security.web.authentication.logout.LogoutFilter@2e1c5d1f, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@24749ad3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6d7772d3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@386f88b3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2a5ed225, org.springframework.security.web.session.SessionManagementFilter@32068aef, org.springframework.security.web.access.ExceptionTranslationFilter@4603c412, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@33425171]
+2022-08-18 10:26:23.086  INFO 17432 --- [    Test worker] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2022-08-18 10:26:24.005  INFO 17432 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2022-08-18 10:26:24.096  INFO 17432 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8889 (http) with context path ''
+2022-08-18 10:26:24.118  INFO 17432 --- [    Test worker] platform.CodeSharingPlatform             : Started CodeSharingPlatform in 11.518 seconds (JVM running for 14.628)
+2022-08-18 10:26:24.820  INFO 17432 --- [nio-8889-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-08-18 10:26:24.821  INFO 17432 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-08-18 10:26:24.824  INFO 17432 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+Hibernate: select code0_.id as id1_0_0_, code0_.code as code2_0_0_, code0_.date as date3_0_0_ from code code0_ where code0_.id=?
+?[1;31m
+Start test 2?[0m
+Hibernate: select code0_.id as id1_0_0_, code0_.code as code2_0_0_, code0_.date as date3_0_0_ from code code0_ where code0_.id=?
+?[1;31m
+Start test 3?[0m
+Hibernate: select code0_.id as id1_0_0_, code0_.code as code2_0_0_, code0_.date as date3_0_0_ from code code0_ where code0_.id=?
+?[1;31m
+Start test 4?[0m
+?[1;31m
+Start test 5?[0m
+Hibernate: select code0_.id as id1_0_0_, code0_.code as code2_0_0_, code0_.date as date3_0_0_ from code code0_ where code0_.id=?
+Hibernate: update code set code=?, date=? where id=?
+?[1;31m
+Start test 6?[0m
+Hibernate: select code0_.id as id1_0_0_, code0_.code as code2_0_0_, code0_.date as date3_0_0_ from code code0_ where code0_.id=?
+?[1;31m
+Start test 7?[0m
+Hibernate: select code0_.id as id1_0_0_, code0_.code as code2_0_0_, code0_.date as date3_0_0_ from code code0_ where code0_.id=?
+?[1;31m
+Start test 8?[0m
+Hibernate: select code0_.id as id1_0_0_, code0_.code as code2_0_0_, code0_.date as date3_0_0_ from code code0_ where code0_.id=?
+?[1;31m
+Start test 9?[0m
+Hibernate: select code0_.id as id1_0_0_, code0_.code as code2_0_0_, code0_.date as date3_0_0_ from code code0_ where code0_.id=?
+Hibernate: update code set code=?, date=? where id=?
+?[1;31m
+Start test 10?[0m
+Hibernate: select code0_.id as id1_0_0_, code0_.code as code2_0_0_, code0_.date as date3_0_0_ from code code0_ where code0_.id=?
+?[1;31m
+Start test 11?[0m
+Hibernate: select code0_.id as id1_0_0_, code0_.code as code2_0_0_, code0_.date as date3_0_0_ from code code0_ where code0_.id=?
+?[1;31m
+Start test 12?[0m
+Hibernate: select code0_.id as id1_0_0_, code0_.code as code2_0_0_, code0_.date as date3_0_0_ from code code0_ where code0_.id=?
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
