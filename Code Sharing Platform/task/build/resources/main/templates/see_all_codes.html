@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Latest</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+</head>
+<body>
+    <div th:each="code : ${codes}">
+        <span th:text="${code.date}"></span>
+        <pre th:text="${code.code}"></pre>
+    </div>
+</body>
+</html>

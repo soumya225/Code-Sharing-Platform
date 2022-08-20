@@ -1,14 +1,13 @@
 package platform.controllers;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import platform.models.Code;
 import platform.repositories.CodeRepository;
 
-import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api")
@@ -20,10 +19,10 @@ public class APIController {
         this.codeRepository = codeRepository;
     }
 
-    @GetMapping("/code")
-    public ResponseEntity<Map<String, String>> getCode() {
+    @GetMapping("/code/{N}")
+    public ResponseEntity<Map<String, String>> getCode(@PathVariable int N) {
 
-        Optional<Code> codeOptional = codeRepository.findById(1);
+        Optional<Code> codeOptional = codeRepository.findById(N);
 
         Map<String, String> response = new HashMap<>();
         response.put("code", codeOptional.isPresent() ? codeOptional.get().getCode() : "");
@@ -36,13 +35,32 @@ public class APIController {
     @PostMapping("/code/new")
     public ResponseEntity<Map<String, String>> changeCode(@RequestBody Code input) {
 
-        input.setId(1);
-        input.setDate(LocalDate.now());
+        input.setDate(LocalDateTime.now().toString());
 
         codeRepository.save(input);
 
         Map<String, String> response = new HashMap<>();
+        response.put("id", input.getId().toString());
 
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/code/latest")
+    public ResponseEntity<List<Code>> getLatestCodes() {
+        Iterable<Code> codes = codeRepository.findAll();
+
+        List<Code> latestCodes = new ArrayList<>();
+
+        codes.forEach(latestCodes::add);
+
+        latestCodes.sort(Collections.reverseOrder());
+
+        int numLatestCodes = latestCodes.size();
+
+        return new ResponseEntity<>(
+                latestCodes.subList(0, Math.min(10, numLatestCodes)),
+                HttpStatus.OK
+        );
+
     }
 }
