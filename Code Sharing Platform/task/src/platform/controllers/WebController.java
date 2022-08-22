@@ -1,31 +1,30 @@
 package platform.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import platform.models.Code;
-import platform.repositories.CodeRepository;
+import platform.services.CodeService;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 @Controller
 public class WebController {
 
-    private final CodeRepository codeRepository;
+    private final CodeService codeService;
 
-    public WebController(CodeRepository codeRepository) {
-        this.codeRepository = codeRepository;
+    @Autowired
+    public WebController(CodeService codeService) {
+        this.codeService = codeService;
     }
 
     @GetMapping("/code/{N}")
     public String getCode(Model model, @PathVariable int N) {
 
-        Optional<Code> codeOptional = codeRepository.findById(N);
-        Code code = codeOptional.orElse(new Code());
+        Optional<Code> codeOptional = codeService.findById(N);
+        Code code = codeOptional.orElseThrow();
 
         model.addAttribute("code", code.getCode());
         model.addAttribute("date", code.getDate());
@@ -40,18 +39,9 @@ public class WebController {
 
    @GetMapping("/code/latest")
     public String getLatestCodes(Model model) {
-       Iterable<Code> codes = codeRepository.findAll();
-
-       List<Code> latestCodes = new ArrayList<>();
-
-       codes.forEach(latestCodes::add);
-
-       latestCodes.sort(Collections.reverseOrder());
-
-       int numLatestCodes = latestCodes.size();
 
         model.addAttribute("codes",
-                latestCodes.subList(0, Math.min(10, numLatestCodes)));
+                codeService.getNLatestCodes(10));
 
         return "see_all_codes";
     }

@@ -4,11 +4,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Latest</title>
     <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <link rel="stylesheet"
+          href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/default.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 </head>
 <body>
     <div th:each="code : ${codes}">
-        <p th:text="${code.date}"></p>
-        <pre th:text="${code.code}"></pre>
+        <span th:text="${code.date}"></span>
+        <pre><code th:text="${code.code}"></code></pre>
     </div>
 </body>
 </html>
