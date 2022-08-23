@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import platform.NotFoundException;
 import platform.models.Code;
 import platform.services.CodeService;
 
@@ -20,14 +21,25 @@ public class WebController {
         this.codeService = codeService;
     }
 
-    @GetMapping("/code/{N}")
-    public String getCode(Model model, @PathVariable int N) {
+    @GetMapping("/code/{uuid}")
+    public String getCode(Model model, @PathVariable String uuid) {
 
-        Optional<Code> codeOptional = codeService.findById(N);
-        Code code = codeOptional.orElseThrow();
+        Optional<Code> codeOptional = codeService.findByUUIDIfUnrestricted(uuid);
+
+        if(codeOptional.isEmpty()) {
+            throw new NotFoundException();
+        }
+
+        Code code = codeOptional.get();
 
         model.addAttribute("code", code.getCode());
         model.addAttribute("date", code.getDate());
+
+        model.addAttribute("hasTimeRestriction", code.hasTimeRestriction());
+        model.addAttribute("time", code.getTime());
+
+        model.addAttribute("hasViewsRestriction", code.hasViewsRestriction());
+        model.addAttribute("views", code.getViews());
 
         return "see_code";
     }
@@ -37,11 +49,11 @@ public class WebController {
         return "create_code";
     }
 
-   @GetMapping("/code/latest")
+    @GetMapping("/code/latest")
     public String getLatestCodes(Model model) {
 
         model.addAttribute("codes",
-                codeService.getNLatestCodes(10));
+                codeService.getNLatestUnrestrictedCodes(10));
 
         return "see_all_codes";
     }

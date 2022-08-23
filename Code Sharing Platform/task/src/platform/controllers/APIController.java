@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import platform.NotFoundException;
 import platform.models.Code;
 import platform.services.CodeService;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 @RestController
@@ -21,26 +21,28 @@ public class APIController {
         this.codeService = codeService;
     }
 
-    @GetMapping("/code/{N}")
-    public ResponseEntity<Map<String, String>> getCode(@PathVariable int N) {
+    @GetMapping("/code/{uuid}")
+    public ResponseEntity<Code> getCode(@PathVariable String uuid) {
 
-        Optional<Code> codeOptional = codeService.findById(N);
+        Optional<Code> codeOptional = codeService.findByUUIDIfUnrestricted(uuid);
 
-        Map<String, String> response = new HashMap<>();
-        response.put("code", codeOptional.isPresent() ? codeOptional.get().getCode() : "");
-        response.put("date", codeOptional.isPresent() ? String.valueOf(codeOptional.get().getDate()) : "");
+        if(codeOptional.isEmpty()) {
+            throw new NotFoundException();
+        }
 
+        Code code = codeOptional.get();
 
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(code);
     }
 
     @PostMapping("/code/new")
-    public ResponseEntity<Map<String, String>> changeCode(@RequestBody Code input) {
+    public ResponseEntity<Map<String, String>> addNewCode(@RequestBody Code input) {
+        System.out.println(input);
 
         codeService.addNewCode(input);
 
         Map<String, String> response = new HashMap<>();
-        response.put("id", input.getId().toString());
+        response.put("id", input.getId());
 
         return ResponseEntity.ok(response);
     }
@@ -49,7 +51,7 @@ public class APIController {
     public ResponseEntity<List<Code>> getLatestCodes() {
 
         return new ResponseEntity<>(
-                codeService.getNLatestCodes(10),
+                codeService.getNLatestUnrestrictedCodes(10),
                 HttpStatus.OK
         );
 

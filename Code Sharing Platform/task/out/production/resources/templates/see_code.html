@@ -12,6 +12,12 @@
 <body>
     <div>
         <span id="load_date" th:text="${date}"></span>
+        <div th:if="${time != null}">
+            <span id="time_restriction" th:text="'The code will be available for ' + ${time} +' seconds'"></span>
+        </div>
+        <div th:if="${views != null}">
+            <span id="views_restriction" th:text="${views} + ' more view(s) allowed'"></span>
+        </div>
         <pre id="code_snippet" ><code th:text="${code}"></code></pre>
     </div>
 </body>

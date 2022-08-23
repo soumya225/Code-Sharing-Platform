@@ -1,7 +1,15 @@
 function send() {
     let object = {
-        "code": document.getElementById("code_snippet").value
+        "code": document.getElementById("code_snippet").value,
     };
+
+    if(document.getElementById("time_restriction")) {
+        object.time = Number(document.getElementById("time_restriction").value);
+    }
+
+    if(document.getElementById("views_restriction")) {
+        object.views = Number(document.getElementById("views_restriction").value);
+    }
 
     let json = JSON.stringify(object);
 
