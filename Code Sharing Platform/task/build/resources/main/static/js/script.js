@@ -19,6 +19,6 @@ function send() {
     xhr.send(json);
 
     if (xhr.status == 200) {
-        alert("Success!");
+        alert(`Success! ${xhr.response}`);
     }
 }

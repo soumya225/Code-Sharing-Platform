@@ -11,8 +11,6 @@ function send() {
         object.views = Number(document.getElementById("views_restriction").value);
     }
 
-    console.log(object);
-
     let json = JSON.stringify(object);
 
     let xhr = new XMLHttpRequest();
@@ -21,6 +19,6 @@ function send() {
     xhr.send(json);
 
     if (xhr.status == 200) {
-        alert("Success!");
+        alert(`Success! ${xhr.response}`);
     }
 }

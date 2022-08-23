@@ -20,31 +20,28 @@ public class CodeService {
     }
 
 
-    private void decreaseViews(Code code) {
+    private boolean decreaseViewsAndIsStillValid(Code code) {
         if(code.hasViewsRestriction()) {
             code.setViews(code.getViews() - 1);
 
-            if(code.getViews() < 0) {
-                codeRepository.delete(code);
-            } else {
-                codeRepository.save(code);
-            }
+            codeRepository.save(code);
+
+            return code.getViews() >= 0;
         }
-
-
+        return true;
     }
 
-    private void decreaseSeconds(Code code) {
+    private boolean decreaseSecondsAndIsStillValid(Code code) {
         if(code.hasTimeRestriction()) {
             Duration durationSinceCreated = Duration.between(LocalDateTime.parse(code.getDate()), LocalDateTime.now());
             code.setTime((int) (code.getTime() - durationSinceCreated.getSeconds()));
 
-            if(code.getTime() <= 0) {
-                codeRepository.delete(code);
-            } else {
-                codeRepository.save(code);
-            }
+            codeRepository.save(code);
+
+            return code.getTime() > 0;
         }
+
+        return true;
     }
 
     public Optional<Code> findByUUIDIfUnrestricted(String id) {
@@ -56,10 +53,12 @@ public class CodeService {
 
         Code code = codeOptional.get();
 
-        decreaseViews(code);
-        decreaseSeconds(code);
+        if(!decreaseSecondsAndIsStillValid(code)
+            || !decreaseViewsAndIsStillValid(code)) {
+            codeRepository.delete(code);
+            codeOptional = codeRepository.findById(id);
+        }
 
-        codeOptional = codeRepository.findById(id);
 
         return codeOptional;
     }

@@ -22,10 +22,10 @@ public class Code implements Comparable<Code>{
     private Integer views;
 
     @JsonIgnore
-    private boolean hasViewsRestriction;
+    private boolean hasViewsRestriction = false;
 
     @JsonIgnore
-    private boolean hasTimeRestriction;
+    private boolean hasTimeRestriction = false;
 
     public String getCode() {
         return code;
@@ -84,6 +84,8 @@ public class Code implements Comparable<Code>{
                 ", date='" + date + '\'' +
                 ", time=" + time +
                 ", views=" + views +
+                ", hasViewsRestriction=" + hasViewsRestriction +
+                ", hasTimeRestriction=" + hasTimeRestriction +
                 '}';
     }
 }

@@ -37,7 +37,6 @@ public class APIController {
 
     @PostMapping("/code/new")
     public ResponseEntity<Map<String, String>> addNewCode(@RequestBody Code input) {
-        System.out.println(input);
 
         codeService.addNewCode(input);
 
